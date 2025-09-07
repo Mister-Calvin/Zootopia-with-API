@@ -17,7 +17,7 @@ def serialize_animal(animal_info):
     output += f'<div class="card__title">{animal_info.get('name','Unknown')}</div>'
     output += '<p class="card__text">'
     output += f"<strong>Diet:</strong> {animal_info['characteristics'].get('diet','Unknown')}<br/>\n"
-    output += f"<strong>Location:</strong> {animal_info.get('locations',['Unknown'])[0]}<br/>\n"
+    output += f"<strong>Location:</strong> {(animal_info.get("locations") or ["Unknown"])[0]}<br/>\n"
     if animal_info["characteristics"].get("type","Unknown"):
         output += f"<strong>Type:</strong> {animal_info['characteristics'].get('type','Unknown')}<br/>\n"
     output += "</p>\n"
@@ -38,7 +38,7 @@ def write_html(output):
     with open("animals_template.html", "r") as file:
         template_html = file.read()
     final_html = template_html.replace("__REPLACE_ANIMALS_INFO__", output)
-    with open("animals.html", "w") as file:
+    with open("animalsTest.html", "w") as file:
         file.write(final_html)
 
 
