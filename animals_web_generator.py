@@ -1,14 +1,5 @@
 import json
-import requests
-
-
-def load_api_datas(animal):
-    name = animal
-    api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(name)
-    response = requests.get(api_url, headers={'X-Api-Key': 'WVLMZj5jLhWA4NTwxTClSg==U2mNnYWCrgb1D4uk'})
-    as_json = response.json()
-    return as_json
-
+import data_fetcher
 
 def serialize_animal(animal_info):
     """Return an HTML <li> card for a single animal"""
@@ -45,9 +36,9 @@ def write_html(output):
 def main():
     """Main function that loads data, generates HTML, and writes the result."""
     input_animals_search = input("Which animals do you want to search? (Enter animals names): ")
-    animals_data = load_api_datas(f"{input_animals_search}")
+    animals_data = data_fetcher.fetch_data(f"{input_animals_search}")
     if not animals_data: #if animals_data empty
-        print(f"{input_animals_search} does not exist.")
+        print(f"*{input_animals_search}* does not exist.")
         return
     write_html(generate_html(animals_data))
     print("Website was successfully generated to the file animals.html.")
