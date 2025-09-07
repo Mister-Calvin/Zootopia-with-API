@@ -46,6 +46,9 @@ def main():
     """Main function that loads data, generates HTML, and writes the result."""
     input_animals_search = input("Which animals do you want to search? (Enter animals names): ")
     animals_data = load_api_datas(f"{input_animals_search}")
+    if not animals_data: #if animals_data empty
+        print(f"{input_animals_search} does not exist.")
+        return
     write_html(generate_html(animals_data))
     print("Website was successfully generated to the file animals.html.")
 
