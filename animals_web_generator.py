@@ -38,14 +38,16 @@ def write_html(output):
     with open("animals_template.html", "r") as file:
         template_html = file.read()
     final_html = template_html.replace("__REPLACE_ANIMALS_INFO__", output)
-    with open("animalsTest.html", "w") as file:
+    with open("animals.html", "w") as file:
         file.write(final_html)
 
 
 def main():
     """Main function that loads data, generates HTML, and writes the result."""
-    animals_data = load_api_datas("Fox")
+    input_animals_search = input("Which animals do you want to search? (Enter animals names): ")
+    animals_data = load_api_datas(f"{input_animals_search}")
     write_html(generate_html(animals_data))
+    print("Website was successfully generated to the file animals.html.")
 
 
 if __name__ == "__main__":
