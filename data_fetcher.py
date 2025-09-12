@@ -11,5 +11,5 @@ def fetch_data(animal_name):
     name = animal_name
     api_url = 'https://api.api-ninjas.com/v1/animals?name={}'.format(name)
     response = requests.get(api_url, headers={'X-Api-Key': f"{API_KEY}"})
-    as_json = response.json()
-    return as_json
+    response_data = response.json()
+    return response_data
